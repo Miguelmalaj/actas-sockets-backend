@@ -9,7 +9,7 @@ import { EnvConfiguration } from './config/app.config';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
+    /* ConfigModule.forRoot({
       envFilePath: `.env`,
       isGlobal: true
     }),
@@ -22,14 +22,14 @@ import { EnvConfiguration } from './config/app.config';
         useNewUrlParser: true,
         useUnifiedTopology: true,
       }),
-    } as MongooseModuleOptions),
-    /* ConfigModule.forRoot({
+    } as MongooseModuleOptions), */
+    ConfigModule.forRoot({
       load: [ EnvConfiguration ],
       // validationSchema: JoiValidationSchema,
     }), 
     MongooseModule.forRoot( process.env.MONGODB, {
       dbName: 'actas'
-    }),*/
+    }),
     MealModule,
     AuthModule,
     SessionModule,
