@@ -9,7 +9,7 @@ import { EnvConfiguration } from './config/app.config';
 
 @Module({
   imports: [
-    /* ConfigModule.forRoot({
+    ConfigModule.forRoot({
       envFilePath: `.env`,
       isGlobal: true
     }),
@@ -17,19 +17,19 @@ import { EnvConfiguration } from './config/app.config';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
-        uri: configService.get<string>('mongodb+srv://cafe_user:SzpDssMyeFq33ZTc@cluster0.qqdjb.mongodb.net'),  // Accede a MONGO_URI usando ConfigService
-        // uri: configService.get<string>( process.env.MONGODB ),  // Accede a MONGO_URI usando ConfigService
+        // uri: configService.get<string>('mongodb+srv://caf_Fq33ZTc@clter0.qqdjb.mongodb.net'),  // Accede a MONGO_URI usando ConfigService
+        uri: configService.get<string>( process.env.MONGODB ),  // Accede a MONGO_URI usando ConfigService
         useNewUrlParser: true,
         useUnifiedTopology: true,
       }),
-    } as MongooseModuleOptions), */
-    ConfigModule.forRoot({
+    } as MongooseModuleOptions),
+    /* ConfigModule.forRoot({
       load: [ EnvConfiguration ],
       // validationSchema: JoiValidationSchema,
-    }),
+    }), 
     MongooseModule.forRoot( process.env.MONGODB, {
       dbName: 'actas'
-    }),
+    }),*/
     MealModule,
     AuthModule,
     SessionModule,
