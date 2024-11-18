@@ -30,7 +30,7 @@ import { EnvConfiguration } from './config/app.config';
     MongooseModule.forRoot( process.env.MONGODB, {
       dbName: 'actas'
     }),
-    MealModule,
+    // MealModule,
     AuthModule,
     SessionModule,
   ],

@@ -33,7 +33,8 @@ async function bootstrap() {
   SwaggerModule.setup('api/explorer', app, document);
 
   const port = process.env.PORT || 3000;
-  await app.listen(port);
+  const host = process.env.IP || '127.0.0.1';
+  await app.listen(port, host);
 
   console.log(`API is running on: http://localhost:${port}`);
   console.log(`Swagger is available at: http://localhost:${port}/api/explorer`);
