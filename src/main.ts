@@ -34,7 +34,7 @@ async function bootstrap() {
 
   const port = process.env.PORT || 3000;
   const host = process.env.IP || '127.0.0.1';
-  await app.listen(port, host);
+  await app.listen(port);
 
   console.log(`API is running on: http://localhost:${port}`);
   console.log(`Swagger is available at: http://localhost:${port}/api/explorer`);
