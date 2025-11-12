@@ -33,5 +33,8 @@ export class User {
     
     @Prop({ type: Boolean, default: false })
     isAdmin: boolean;
+
+    @Prop({ type: Boolean, default: false })
+    sello: boolean;
 }
 export const UserSchema = (mongoose.models.User || SchemaFactory.createForClass(User)) as Model<User>;

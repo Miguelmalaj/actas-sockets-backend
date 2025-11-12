@@ -27,11 +27,20 @@ export class AuthController {
             // await this.sessionsService.createSession(user._id, accessToken, 'http');
             await this.sessionsService.createSession(userIdString, accessToken, 'http');
 
-            const { folio, reverso, reversoFolio, marco, marcoFolioReverso, marcoReverso, isAdmin } = user;
+            // Extract user properties with explicit defaults for fields that might not exist in old documents
+            // Mongoose documents may not have all fields if they were created before the field was added
+            const userObj = (user as any).toObject ? (user as any).toObject() : user;
             // Devuelve el accessToken y el userId
             return {
                 accessToken,
-                folio, reverso, reversoFolio, marco, marcoFolioReverso, marcoReverso, isAdmin
+                folio: userObj.folio ?? true, 
+                reverso: userObj.reverso ?? false, 
+                reversoFolio: userObj.reversoFolio ?? false, 
+                marco: userObj.marco ?? false, 
+                marcoFolioReverso: userObj.marcoFolioReverso ?? false, 
+                marcoReverso: userObj.marcoReverso ?? false, 
+                isAdmin: userObj.isAdmin ?? false, 
+                sello: userObj.sello ?? false
             };
         }
 
@@ -49,7 +58,7 @@ export class AuthController {
     @Patch('users/:id')
     async updateUserById( @Param('id') id: string, @Body() updatedUserData: Partial<User> ) {
             
-        const booleanKeys = ['folio', 'reverso', 'reversoFolio', 'marco', 'marcoFolioReverso', 'marcoReverso'];
+        const booleanKeys = ['folio', 'reverso', 'reversoFolio', 'marco', 'marcoFolioReverso', 'marcoReverso', 'sello'];
         delete updatedUserData['_id'];
         delete updatedUserData['username'];
 
