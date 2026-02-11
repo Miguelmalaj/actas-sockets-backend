@@ -9,6 +9,7 @@ import { IoAdapter } from '@nestjs/platform-socket.io';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  //Add this line just to redeploy test (railway issues).
   const corsOptions: CorsOptions = {
     origin: '*', // Permite todas las solicitudes de origen (puedes restringir esto según sea necesario)
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
